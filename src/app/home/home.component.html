@@ -1,0 +1,19 @@
+<div class="container">
+  <ng-template #page>
+    <div class="jumbotron">
+      <h1>O365</h1>
+      <div *ngIf="authService.authenticated; then welcomeUser else signInPrompt"></div>
+      <ng-template #welcomeUser>
+        <h4 class="mt-2" *ngIf="authService.user">Welcome {{ authService.user.displayName }}!</h4>
+        <p>Use the navigation bar at the top of the page to get started.</p>
+      </ng-template>
+      <ng-template #signInPrompt>
+        <a href="javascript:undefined" class="btn btn-primary btn-large mt-2" role="button" (click)="signIn()">Click here to sign in</a>
+      </ng-template>
+    </div>
+  </ng-template>
+
+  <div *ngIf="loader && !authService.user; else page" class="loader__block">
+    <fa-icon class="text-black" [icon]="['fas', 'spinner']" size="5x" [pulse]="true"></fa-icon>
+  </div>
+</div>

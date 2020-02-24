@@ -1,0 +1,11 @@
+.loader__block {
+  height: 100vh;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: rgba(53, 55, 59, .8);
+  position: fixed;
+  top: 0;
+  left: 0;
+}

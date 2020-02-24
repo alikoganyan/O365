@@ -1,0 +1,31 @@
+<ng-template #page>
+  <h1>Folder</h1>
+  <table class="table">
+    <thead>
+    <tr>
+      <th scope="col">Name</th>
+      <th scope="col">Created By</th>
+      <th scope="col">Last Modified By</th>
+      <th scope="col">Web Url</th>
+      <th scope="col">Created Date Time</th>
+      <th scope="col">Excels</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr *ngFor="let folder of folders">
+      <td scope="row">{{ folder.name }}</td>
+      <td>{{ folder.createdBy.user.displayName }}</td>
+      <td>{{ folder.lastModifiedBy.user.displayName }}</td>
+      <td>{{ folder.webUrl }}</td>
+      <td>{{ formatDateTimeTimeZone(folder.createdDateTime) | date: 'short' }}</td>
+      <td>
+        <a class="btn btn-primary" [routerLink]="['/excel', folder.id]">Get excels</a>
+      <td>
+    </tr>
+    </tbody>
+  </table>
+</ng-template>
+
+<div *ngIf="!loader; else page" class="loader__block">
+  <fa-icon class="text-black" [icon]="['fas', 'spinner']" size="5x" [pulse]="true"></fa-icon>
+</div>

@@ -1,0 +1,27 @@
+<ng-template #page>
+  <h1>Excel</h1>
+  <table class="table">
+    <thead>
+    <th scope="col">Name</th>
+    <th scope="col">Created By</th>
+    <th scope="col">Last Modified By</th>
+    <th scope="col">Created Date Time</th>
+    <th scope="col">Excels</th>
+    </thead>
+    <tbody>
+    <tr *ngFor="let excel of excels">
+      <td>{{ excel.name }}</td>
+      <td>{{ excel.createdBy.user.displayName }}</td>
+      <td>{{ excel.lastModifiedBy.user.displayName }}</td>
+      <td>{{ formatDateTimeTimeZone(excel.createdDateTime) | date: 'short' }}</td>
+      <td>
+        <a class="btn btn-primary" href="{{excel.webUrl}}" target="_blank">Show Excel</a>
+      </td>
+    </tr>
+    </tbody>
+  </table>
+</ng-template>
+
+<div *ngIf="!loader; else page" class="loader__block">
+  <fa-icon class="text-black" [icon]="['fas', 'spinner']" size="5x" [pulse]="true"></fa-icon>
+</div>
